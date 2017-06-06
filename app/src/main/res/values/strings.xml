@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Albanian Castles</string>
+    <string name="Albanian_Castles">Albanian Castles</string>
+    <string name="action_settings">Settings</string>
+    <string name="kalajashkodres">Kështjella e Rozafatit është e ngritur mbi një kodër shkëmbore në hyrje të qytetit të Shkodrës. Mbi faqet e pjerrëta të kodrës ngrihen muret rrethuese të cilat zenë një sipërfaqe rreth 9 ha. Në periudhën e lashtë muret ishin të stilit poligonal, gjurmë të të cilave ruhen edhe sot. Si qendër e fortifikuar ilire përmendet për herë të parë gjatë sundimit të mbretit Gent dhe historiani Tit Livi e quan vendi më i fortë i labeatëve. Kështjella del me emrin Rozafa në periudhën e mesjetës, gjatë së cilës u pushtua herë nga sllavët dhe herë nga bizantinët. Brenda mureve të saj ruhen një sërë mjedisesh si garnizone, depo, një ndërtesë administrative etj.</string>
+    <string name="name">Name</string>
+    <string name="textview">info</string>
+    <string name="title_activity_maps">Map</string>
+
+</resources>
