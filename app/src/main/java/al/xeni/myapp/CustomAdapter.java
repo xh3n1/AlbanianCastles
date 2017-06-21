@@ -3,46 +3,47 @@ package al.xeni.myapp;
 /**
  * Created by xh3n1 on 17-05-25.
  */
-import android.app.Activity;
+
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
+
 import android.view.LayoutInflater;
 
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 
-import android.widget.ListAdapter;
+import android.widget.ImageView;
+
 import android.widget.TextView;
+
+import java.util.List;
 
 import static android.graphics.Color.*;
 
-class customadapter extends ArrayAdapter<String>{
+class CustomAdapter extends ArrayAdapter<Info>{
 
-     customadapter( Context context,  String[] kala) {
-        super(context, R.layout.custom_row, kala);
+     CustomAdapter(Context context, List<Info> castles) {
+        super(context, R.layout.custom_row, castles);
     }
 
+
     @Override
-    public View getView(int position,  View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView,  ViewGroup parent) {
      LayoutInflater kalaInflator= LayoutInflater.from(getContext());
         View customview= kalaInflator.inflate(R.layout.custom_row,parent,false);
-        String kalaitem= getItem(position);
+        Info kalaitem= getItem(position);
 
         TextView kalatext = (TextView) customview.findViewById(R.id.kalatext);
 
 
-        kalatext.setText(kalaitem);
+        kalatext.setText(kalaitem.getName());
         kalatext.setTextColor(WHITE);
+        ImageView img =(ImageView)customview.findViewById(R.id.imgList);
+        img.setImageResource(kalaitem.getPhotoPathSmall());
+
+
 
         return customview;
     }

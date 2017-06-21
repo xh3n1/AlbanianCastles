@@ -17,28 +17,74 @@ import android.widget.ListView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.Serializable;
+
 /**
  * Created by xh3n1 on 17-05-30.
  */
 
-public class Info  {
+public class Info implements Serializable {
+    private int id;
     private String info;
-    private String photoPath;
-    private String lat;
-    private String longt;
+    private int photoPath;
+    private transient LatLng latLng;
+    private String videoId;
+
+    private String name;
+    private int photoPathSmall;
 
 
+    public Info(){}
 
-    public Info (String info, String photopath, String lat, String longt){
+
+    public Info (int id, String info, int photoPath,int photoPathSmall, LatLng latLng, String name, String videoId){
 
         this.info=info;
-        this.photoPath=photopath;
-        this.lat=lat;
-        this.longt=longt;
+        this.photoPath=photoPath;
+        this.photoPathSmall=photoPathSmall;
+        this.latLng=latLng;
+        this.videoId=videoId;
+
+
+        this.id=id;
+        this.name=name;
+
 
 
     }
+    public String getVideoId() {
+        return videoId;
+    }
 
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPhotoPathSmall() {
+        return photoPathSmall;
+    }
+
+    public void setPhotoPathSmall(int photoPathSmall) {
+        this.photoPathSmall = photoPathSmall;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getInfo() {
         return info;
@@ -48,27 +94,19 @@ public class Info  {
         this.info = info;
     }
 
-    public String getPhotoPath() {
+    public int getPhotoPath() {
         return photoPath;
     }
 
-    public void setPhotoPath(String photoPath) {
+    public void setPhotoPath(int photoPath) {
         this.photoPath = photoPath;
     }
 
-    public String getLat() {
-        return lat;
+    public LatLng getLatLng() {
+        return latLng;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLongt() {
-        return longt;
-    }
-
-    public void setLongt(String longt) {
-        this.longt = longt;
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
     }
 }
