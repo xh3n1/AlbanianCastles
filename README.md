@@ -1,2 +1,2 @@
-# CastlesOfAlbania
-A simple android app promoting Castles of Albania. Currently, it is in albanian language but soon will be in English and other languages. New stuff coming soon.
+# Albanian Castles
+A simple android app promoting Albanian CAstles in Albania, Kosovo, Macedonia, Montenegro and Greece. 
