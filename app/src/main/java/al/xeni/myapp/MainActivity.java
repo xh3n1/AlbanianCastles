@@ -122,9 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                 a=new Info( 0,  infoberati,  R.drawable.berati,R.drawable.berati_sm,   MapsActivity.Berati,  kala[i], videoId);
             }else if ( i==1) {
-                String infoborshi="\n" +
-                        "\n" +
-                        "Kalaja e Borshit ndodhet rreth 3 km në VP të fshatit Borsh, Sarandë." +
+                String infoborshi="Kalaja e Borshit ndodhet rreth 3 km në VP të fshatit Borsh, Sarandë." +
                         " Ajo ngrihet mbi një kodër, e cila përfundon në majë me një kreshtë shkëmbore dhe zë një " +
                         "pozicion qendror kundrejt qytetit antik të Borshit, i cili shtrihej dikur në shpatet e kësaj " +
                         "kodre.\n  Kalaja ka një pozitë të rëndësishme strategjike jo vetëm sepse ndodhet pranë detit" +

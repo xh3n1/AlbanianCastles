@@ -44,6 +44,10 @@ class CustomAdapter extends ArrayAdapter<Info>{
         img.setImageResource(kalaitem.getPhotoPathSmall());
 
 
+        TextView shortDescription= (TextView)customview.findViewById(R.id.shortDescription);
+        shortDescription.setText(kalaitem.getInfo().substring(0,120)+"...");
+
+
 
         return customview;
     }
