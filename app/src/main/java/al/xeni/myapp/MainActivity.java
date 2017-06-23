@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     " Përballë hyrjes së kalasë është varros artisti shqiptar Ibrahim Kodra. Nga kodra ku ngrihet kalaja është i shikueshëm " +
                     "gjithashtu lumi Ishëm. ";
 
-            a=new Info( 9,  infoishmi,  R.drawable.ishmi,R.drawable.ishmi_25,   MapsActivity.Ishmi,  kala[i], videoId);
+            a=new Info( 9,  infoishmi,  R.drawable.ishmi,R.drawable.ishmi_sm,   MapsActivity.Ishmi,  kala[i], videoId);
         }
 
             else if ( i==10) {
