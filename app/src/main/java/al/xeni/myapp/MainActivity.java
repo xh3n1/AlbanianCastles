@@ -114,7 +114,31 @@ public class MainActivity extends AppCompatActivity {
                         "në qytet kështjellë me mure që arrinin në gjatësi deri në 1.400 metra dhe me një " +
                         "sipërfaqe prej 10 ha. " +
                         "\n  Burimet historike deshmojne se prej këtij viti kalaja e Beratit ka qenë objekt " +
-                        "i sulmeve të ndryshme. ";
+                        "i sulmeve të ndryshme.Në dokumenta të ndryshme historike të kohës gjenden një sërë" +
+                        " emrash. Me emrin e lashte Antipatrea përmendet në vitin 216 p.e.s.. Nga romakët u quajt " +
+                        "edhe Albanorum oppidium (fortesa e Arberve).Një nga monumentet më të bukur, më të mëdha " +
+                        "dhe më të rëndësishëm të historisë dhe kulturës shqiptare është padyshim kalaja e Beratit. \n" +
+                        " Me formën e saj të spikatur në trajtë trekëndëshi ajo ngrihet mbi një kodër të lartë 187 m, " +
+                        "e cila ndodhet në bregun e djathtë të lumit Osum, duke dominuar luginën e tij (Hëna Spahiu," +
+                        " Qyteti Iliro-Arbëror i Beratit. Tiranë 1990, fq. 9-11). Në të kaluarën siguria e kësaj kështjelle " +
+                        "ka qënë maksimale, sepse projektuesit e saj e ndërtuan pikërisht në këtë kodër ku ana jugore bie thikë " +
+                        "mbi Osum, anët lindore dhe perëndimore kanë pjerrësi të madhe ndërsa në anën veriore kodra ulet ëmbël" +
+                        " drejt qafës së Biftës, duke siguruar komunikimin. Muret kanë një perimetër prej 1400 m brinja lindore" +
+                        " e këtij trekëndëshi është e gjatë 620 m ndërsa dy tjerat janë të barabarta dhe janë të gjata 410 m (Berati," +
+                        " Historia dhe arkitektura Tiranë 1988, fq. 34). \nNdryshe nga kështjellat e tjera kalaja e Beratit ka qenë" +
+                        " e pajisur me 24 kulla të cilat emërtohen sot me emrin turk TABJE së bashku me muret ato i përkasin " +
+                        "periudhave të ndryshme të ndërtimit që nisin qysh nga shekulli IV Pk dhe përfundojnë gjatë kohës së " +
+                        "sundimit të Ali Pashë Tepelenës (1813-1821). Brenda sipërfaqes prej 9.6 ha të kalasë ndodhen disa kisha," +
+                        " një pjesë e të cilave rrënojë, Sarajet turke, rrënojat e dy xhamive, sternat e ujit të quajtura Saranxha," +
+                        " sheshi i Sallabandës, sheshi i quajtur fusha e madhe etj.\n Ndërkohë që pjesën më të madhe të këtij oborrit" +
+                        " të brendshëm e zënë një sërë rrugicash, kopshtesh, bacesh dhe shtëpi banimi të cilat përbëjnë lagjen e " +
+                        "quajtur kala. Gjithsej ky monument ka katër porta komunikimi. Njëra prej tyre dhe pikërisht ajo që paraqet" +
+                        " më shumë interes për shkak të elementeve përbërës të saj është ato e anës juglindore. \nPasi kalon në të " +
+                        "futesh në një oborr të fortifikuar, ku përpara të del një portë e dytë pikërisht në murin ballor të saj, " +
+                        "në anën e djathtë të një harku (Apollon Baçe, qyteti i fortifikuar i Beratit, Monumentet 2, 1971, fq.43-63)," +
+                        " ndodhet një monogram me tulla të kuqe që i përket ndërtimeve bizantine të vitit 1204. I ndërtuar ashtu " +
+                        "si i gjithë kompleksi mbrojtës nga Despoti i Epirit Mihal I Porta me monogramin në formë kryqi me inicialet" +
+                        " M.K. edhe sot ruan po këtë emër “Porta e Mihal Komnenit”.";
 
                 videoId="QbGkxnHUANg";
 
