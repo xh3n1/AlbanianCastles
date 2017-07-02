@@ -7,5 +7,15 @@
         android:icon="@drawable/backicon"
         android:title="Back"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mapButton"
+        android:icon="@drawable/whitemap"
+        android:title="Map"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/videoButton"
+        android:icon="@drawable/video"
+        android:title="Video"
+        app:showAsAction="ifRoom" />
 
 </menu>
