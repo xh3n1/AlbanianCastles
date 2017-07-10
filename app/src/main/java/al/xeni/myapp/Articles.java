@@ -1,5 +1,7 @@
 package al.xeni.myapp;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,7 +64,11 @@ public class Articles extends AppCompatActivity {
         TextView pershkrimi= (TextView)findViewById(R.id.descriptionID);
         pershkrimi.setText(sel.getInfo());
         ImageView foto=(ImageView)findViewById(R.id.photoID);
-        foto.setImageResource(sel.getPhotoPath());
+
+        //foto.setImageResource(sel.getPhotoPath());
+        int resId = this.getResources().getIdentifier(sel.getPhotoPath(), "drawable",this.getPackageName());
+        foto.setImageResource(resId);
+
         ImageButton ytbutton= (ImageButton)findViewById(R.id.videoButton);
         ytbutton.setImageResource(R.drawable.video);
         ImageButton mapButton=(ImageButton)findViewById(R.id.mapButton) ;

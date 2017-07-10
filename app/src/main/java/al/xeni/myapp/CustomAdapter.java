@@ -23,9 +23,10 @@ import java.util.List;
 import static android.graphics.Color.*;
 
 class CustomAdapter extends ArrayAdapter<Info>{
-
+    private Context context;
      CustomAdapter(Context context, List<Info> castles) {
-        super(context, R.layout.custom_row, castles);
+         super(context, R.layout.custom_row, castles);
+         this.context = context;
     }
 
 
@@ -41,8 +42,11 @@ class CustomAdapter extends ArrayAdapter<Info>{
         kalatext.setText(kalaitem.getName());
         kalatext.setTextColor(WHITE);
         ImageView img =(ImageView)customview.findViewById(R.id.imgList);
-        img.setImageResource(kalaitem.getPhotoPathSmall());
 
+
+        //img.setImageResource(kalaitem.getPhotoPathSmall());
+        int resId = context.getResources().getIdentifier(kalaitem.getPhotoPathSmall(),"drawable", context.getPackageName());
+        img.setImageResource(resId);
 
         TextView shortDescription= (TextView)customview.findViewById(R.id.shortDescription);
         shortDescription.setText(kalaitem.getInfo().substring(0,120)+"...");

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1026952191579",
+    "firebase_url": "https://albaniancastles.firebaseio.com",
+    "project_id": "albaniancastles",
+    "storage_bucket": "albaniancastles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026952191579:android:8561e893a8f550b0",
+        "android_client_info": {
+          "package_name": "al.xeni.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026952191579-cvnv72etv9op2o2uahk621r4jeulh369.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "al.xeni.myapp",
+            "certificate_hash": "ef5e221c02d02bf58cbb76aa7e37bb0b396cb1b1"
+          }
+        },
+        {
+          "client_id": "1026952191579-2psgk6i5ml3vi3e8potobf40lncmb7a6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwNPQg3fgglCfW-oK2PvCLMOirmb35qjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026952191579-2psgk6i5ml3vi3e8potobf40lncmb7a6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

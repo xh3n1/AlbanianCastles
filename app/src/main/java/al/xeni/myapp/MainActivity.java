@@ -3,9 +3,12 @@ package al.xeni.myapp;
 import android.app.Activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,14 +25,49 @@ import android.widget.ListView;
 
 import android.widget.ListAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import android.Manifest;
+
+import static al.xeni.myapp.R.drawable.berati_sm;
+import static al.xeni.myapp.R.drawable.borshi_sm;
+import static al.xeni.myapp.R.drawable.dajti_sm;
+import static al.xeni.myapp.R.drawable.delvina_sm;
+import static al.xeni.myapp.R.drawable.dorzi_sm;
+import static al.xeni.myapp.R.drawable.drishti_sm;
+import static al.xeni.myapp.R.drawable.durresi_sm;
+import static al.xeni.myapp.R.drawable.gjirokastra_sm;
+import static al.xeni.myapp.R.drawable.gjonbocari_sm;
+import static al.xeni.myapp.R.drawable.himara_sm;
+import static al.xeni.myapp.R.drawable.ishmi_sm;
+import static al.xeni.myapp.R.drawable.kanina_sm;
+import static al.xeni.myapp.R.drawable.kelcyra_sm;
+import static al.xeni.myapp.R.drawable.kruja_sm;
+import static al.xeni.myapp.R.drawable.lekuresi_sm;
+import static al.xeni.myapp.R.drawable.lezha_sm;
+import static al.xeni.myapp.R.drawable.peqini_sm;
+import static al.xeni.myapp.R.drawable.petralba_sm;
+import static al.xeni.myapp.R.drawable.petrela_sm;
+import static al.xeni.myapp.R.drawable.pogradeci_sm;
+import static al.xeni.myapp.R.drawable.portopalermo_sm;
+import static al.xeni.myapp.R.drawable.preza_sm;
+import static al.xeni.myapp.R.drawable.rodoni_sm;
+import static al.xeni.myapp.R.drawable.sebaste_sm;
+import static al.xeni.myapp.R.drawable.shkodra_sm;
+import static al.xeni.myapp.R.drawable.tepelena_sm;
+import static al.xeni.myapp.R.drawable.tirana_sm;
+import static al.xeni.myapp.R.drawable.varoshi_sm;
+import static al.xeni.myapp.R.drawable.video;
+import static al.xeni.myapp.R.drawable.zgerdheshi_sm;
+import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     public static List<Info> castles = new ArrayList<>();
     public static List<Video> videos = new ArrayList<>();
+    private DatabaseHelper myDbHelper;
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -144,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                a=new Info( 0,  infoberati,  R.drawable.berati,R.drawable.berati_sm,   MapsActivity.Berati,  kala[i], videoId);
+                a=new Info( 0,  infoberati, "berati", "berati_sm",   MapsActivity.Berati,  kala[i], videoId);
             }else if ( i==1) {
                 String infoborshi="Kalaja e Borshit ndodhet rreth 3 km në VP të fshatit Borsh, Sarandë." +
                         " Ajo ngrihet mbi një kodër, e cila përfundon në majë me një kreshtë shkëmbore dhe zë një " +
@@ -154,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                         "në mesjetë të njohura si malet e Himarës, duke lidhur bregdetin me brendësinë e vendit." +
                         " Nëpërmjet “Grykës së Borshit” realizohej lidhja me Kalasën dhe Delvinën.";
                 videoId="OAlkb1CDTKA";
-                a=new Info( 1,  infoborshi,  R.drawable.borshi,R.drawable.borshi_sm,   MapsActivity.Borshi,  kala[i], videoId);
+                a=new Info( 1,  infoborshi,  "borshi", "borshi_sm",   MapsActivity.Borshi,  kala[i], videoId);
             }
 
 
@@ -168,14 +207,14 @@ public class MainActivity extends AppCompatActivity {
                         "prej 1.12 ha, dhe në pjesën më të madhe të saj ajo është mjaft e pjerrët. " +
                         "Muret kanë qenë të detyruar të ndjekin formën e kodrës, duke formuar një " +
                         "trekëndësh i cili është forcuar në tre këndet me nga një kullë të rrumbullakët." +
-                        " \nSipërfaqja e rrethuar nga këta mure është në pjesën më të madR.drawable.berati_sm;he mjaft e pjerrët " +
+                        " \nSipërfaqja e rrethuar nga këta mure është në pjesën më të madhe mjaft e pjerrët " +
                         "dhe e mbuluar me shkëmbinj, vetëm në rrëzë të mureve dhe pjesën midis dy majave " +
                         "kjo është e përshtatshme për ndërtim banesash. Trashësia e mureve është e lidhur " +
                         "me cilësitë mbrojtëse të terrenit, atje ku terreni është shumë i pjerrët jepte " +
                         "mundësi mbrojtjeje edhe një mur jo i trashë, ndërsa në vendet pak të pjerrëta " +
                         "ekzistonte një mur i trashë. ";
                 videoId = "";
-                a=new Info( 2,  infodajti,  R.drawable.dajti, R.drawable.dajti_sm,  MapsActivity.Dajti,  kala[i], videoId);
+                a=new Info( 2,  infodajti,  "dajti", "dajti_sm",  MapsActivity.Dajti,  kala[i], videoId);
             }
             else if ( i==3) {
                 String infodelvina="Ndodhet në qytetin e Delvinës, në një pikë gjeografike që ka dominuar " +
@@ -192,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                         "një kompleks mbrojtës. Mbrojtja e përgjithshme e kështjellës paraqet një rast unik " +
                         "për zonën.";
 
-                a=new Info( 3,  infodelvina,  R.drawable.delvina,R.drawable.delvina_sm,   MapsActivity.Delvina,  kala[i], videoId);
+                a=new Info( 3,  infodelvina,  "delvina", "delvina_sm",   MapsActivity.Delvina,  kala[i], videoId);
             }
             else if ( i==4) {
                 String infodorzi="Kalaja e Dorëzit ndodhet rreth 20 km në jug perëndim të Tiranës " +
@@ -214,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                         "gjetur fragmente enësh. Fragmente muresh të tjera të një periudhe më të" +
                         " vonë, tregojnë e qyteti i hershëm ilir ka qenë i banuar deri në kohët e vona " +
                         "antike.";
-                a=new Info( 4,  infodorzi,  R.drawable.dorzi,R.drawable.dorzi_sm,   MapsActivity.Dorzi,  kala[i], videoId);
+                a=new Info( 4,  infodorzi,  "dorzi" , "dorzi_sm",   MapsActivity.Dorzi,  kala[i], videoId);
             }
 
             else if ( i==5) {
@@ -226,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                         "dhe varej nga Dioqeza e Tivarit. Kalaja e Drishtit u ngrit në shek XIII si një fortesë " +
                         "bizantine. Gjate shekujve XIV-XV kalaja se bashku me qytetin kaloi nga njeri sundues " +
                         "tek tjetri, derisa me 1478 bie ne duart e osmaneve, te cilet u perpoqen ta meremetonin. ";
-                a=new Info( 5,  infodrishti,  R.drawable.drishti,R.drawable.drishti_sm,   MapsActivity.Drishti,  kala[i], videoId);
+                a=new Info( 5,  infodrishti,  "drishti", "drishti_sm",   MapsActivity.Drishti,  kala[i], videoId);
             }
             else if ( i==6) {
                 String infodurresi="Kalaja u ndërtua nga perandori i Perandorisë Bizantine Anastasi I cili origjinën" +
@@ -249,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                         "të gjithë qytetin ";
                 videoId=" Kp29p9_RmUA";
 
-                a=new Info( 6,  infodurresi,  R.drawable.durresi,R.drawable.durresi_sm,   MapsActivity.Durres,  kala[i], videoId);
+                a=new Info( 6,  infodurresi,  "durresi", "durresi_sm",   MapsActivity.Durres,  kala[i], videoId);
             } else if ( i==7) {
                 String infogjirokastra="Kalaja e Gjirokastrës si histori e lidhur me qytetin e Gjirokastrës," +
                         " përmendet për herë të parë si qytet dhe kështjellë në vitin 1336. Në këto vite," +
@@ -261,13 +300,13 @@ public class MainActivity extends AppCompatActivity {
                         "pushtimit të Ali Pashës, ruhen vetëm pak gjurmë pasi muret janë veshur deri në lartësi " +
                         "nga ndërtimet e reja. Ndërsa, kullat pjesërisht janë rrënuar dhe ripërshtatur. ";
                 videoId="kXg7gDgooe4";
-                a=new Info( 7,  infogjirokastra,  R.drawable.gjirokastra,R.drawable.gjirokastra_sm,   MapsActivity.Gjirokastra,  kala[i], videoId);
+                a=new Info( 7,  infogjirokastra,  "gjirokastra", "gjirokastra_sm",   MapsActivity.Gjirokastra,  kala[i], videoId);
             } else if ( i==8) {
                 String infogjonbocari="Ndodhet ne fshatin Tragjas dhe është e ndërtuar ne shekullin XVI - XVII." +
                         " Ka forme drejtkëndëshe me gjerësi muresh 1,25 metra dhe lartësi deri ne 5,5 metra.\n" +
                         "              ";
                 videoId = "";
-                a=new Info( 8,  infogjonbocari,  R.drawable.gjonbocari,R.drawable.gjonbocari_sm,   MapsActivity.Gjonbocari,  kala[i], videoId);
+                a=new Info( 8,  infogjonbocari,  "gjonbocari", "gjonbocari_sm",   MapsActivity.Gjonbocari,  kala[i], videoId);
 
         } else if ( i==9) {
             String infoishmi=" Kalaja e Ishmit është një kala dhe monument i trashëgimisë kulturore në Ishëm, " +
@@ -275,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
                     " Përballë hyrjes së kalasë është varros artisti shqiptar Ibrahim Kodra. Nga kodra ku ngrihet kalaja është i shikueshëm " +
                     "gjithashtu lumi Ishëm. ";
 
-            a=new Info( 9,  infoishmi,  R.drawable.ishmi,R.drawable.ishmi_sm,   MapsActivity.Ishmi,  kala[i], videoId);
+            a=new Info( 9,  infoishmi,  "ishmi", "ishmi_sm",   MapsActivity.Ishmi,  kala[i], videoId);
         }
 
             else if ( i==10) {
@@ -287,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                         " 380 metra mbi nivelin e detit. Ajo ka një sipërfaqe prej 3.6 hektarësh. Prej këndej hapet " +
                         "një pamje mjaft e bukur drejt Vlorës dhe gjirit të saj.";
 
-                a=new Info( 10,  infokanina,  R.drawable.kanina,R.drawable.kanina_sm,   MapsActivity.Kanina,  kala[i], videoId);
+                a=new Info( 10,  infokanina,  "kanina", "kanina_sm",   MapsActivity.Kanina,  kala[i], videoId);
             } else if ( i==11) {
                 String infokelcyra="Këlcyra e sotme është qyteza që ju njihni në rrethin e Përmetit përballë grykës së " +
                         "Këlcyrës, buzë bregut të djathtë të luginës së Vjosës. Por dikur ka qenë një pikë e rëndësishme kalimi," +
@@ -298,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                         "kryengritësit arbëreshë. \n Në pjesën më të lartë të kodrës qenë edhe rrënojat e një kështjelle" +
                         " të periudhës së pushtimit osman. Në regjistrin osman të v. 1431 shënohet si qendër e vilajetit të Këlcyrës." +
                         " Gjatë periudhës së Rilindjes Kombëtare, në këtë zonë, zhvilluan veprimtari patriotike një varg atdhetarësh";
-                a=new Info( 11,  infokelcyra,  R.drawable.kelcyra, R.drawable.kelcyra_sm,  MapsActivity.Kelcyra,  kala[i], videoId);
+                a=new Info( 11,  infokelcyra,  "kelcyra", "kelcyra_sm",  MapsActivity.Kelcyra,  kala[i], videoId);
             } else if ( i==12) {
                 String infokruja="Kjo kala me trajtë eliptike dhe me perimetër 804 m, " +
                         "zë një sipërfaqe prej 2.5 ha tokë dhe është ngritur në një kodër shkëmbore." +
@@ -310,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
                         "shqiptarëve kundër pushtimit osman. Edhe në ditët e sotme është një ndër vendet më " +
                         "të njohura dhe më të vizituar nga turistët. ";
                 videoId="ZVdWLo8qtgc";
-                a=new Info( 12,  infokruja,  R.drawable.kruja,R.drawable.kruja_sm,   MapsActivity.Kruja,  kala[i], videoId);
+                a=new Info( 12,  infokruja,  "kruja", "kruja_sm",   MapsActivity.Kruja,  kala[i], videoId);
             }else if ( i==13) {
                 String infohimara="Lagja kala e Himarës, ose fshati i Himarës, është ndërtuar mbi kodrën e Barbakasë." +
                         " Himara përbën një qytet me histori të gjatë, e cila fillon që në periudhën antike," +
@@ -326,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
                         "qyteti Kemarai (Himarë) dërgon tek orakulli i Delfit theorodokët (priftërinjtë), krahas qyteteve " +
                         "të tjera të Foinikes dhe Abanties. ";
                 videoId = "";
-                a=new Info( 13,  infohimara,  R.drawable.himara,R.drawable.himara_sm,   MapsActivity.Himara,  kala[i], videoId);
+                a=new Info( 13,  infohimara,  "himara", "himara_sm",   MapsActivity.Himara,  kala[i], videoId);
             }else if ( i==14) {
                 String infolekuresi="Kalaja ndodhet midis rrënojave të fshati Lëkurës mbi majën e një kodre të lartë" +
                         " që ngrihet sipër qytetit të Sarandës. Ka një pozicion të veçantë strategjik nga ku mund " +
@@ -342,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
                         "nga historianët të jetë ndërtuar rreth viteve 1537, në kohën kur Sulltan Sulejmani " +
                         "sulmoi Korfuzin dhe i lindi si domosdoshmëri kontrolli i Skelës së Sarandës dhe rrugës" +
                         " që kalon Sarandë-Butrint. ";
-                a=new Info( 14,  infolekuresi,  R.drawable.lekuresi,R.drawable.lekuresi_sm,   MapsActivity.Lekuresi,  kala[i], videoId);
+                a=new Info( 14,  infolekuresi,  "lekuresi", "lekuresi_sm",   MapsActivity.Lekuresi,  kala[i], videoId);
             }else if ( i==15) {
                 String infolezha="Kalaja e Lezhës ngrihet në majë të një kodre me lartësi 186 metra, në lindje të qytetit." +
                         " Kalaja ka origjinë ilire. Në vitin 1440 ajo iu nënshtrua një rindërtimi nga venedikasit, " +
@@ -354,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                         "Qyteti i ndërtuar në kodër ka një pozicion strategjik që kontrollon luginën e Drinit deri" +
                         " në Gjirin e Shën Gjinit në detin Adriatik";
                 videoId="O7abP6M0Nt4";
-                a=new Info( 15,  infolezha,  R.drawable.lezha,R.drawable.lezha_sm,   MapsActivity.Lezha,  kala[i], videoId);
+                a=new Info( 15,  infolezha,  "lezha", "lezha_sm",   MapsActivity.Lezha,  kala[i], videoId);
             }else if ( i==16) {
                 String info="Kalaja e Pogradecit është e vendosur në majën e kodrës, " +
                         "në pjesën perëndimore të qytetit të Pogradecit, me lartësi 205 m mbi nivelin e liqenit " +
@@ -362,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
                         " Krishtit u pajis me mure mbrojtëse. Ka pasur një vjetërsi banimi prej 1400 vjetësh, " +
                         "duke qenë një kala iliro - shqiptare e hershme. ";
                 videoId = "";
-                a=new Info( 16,  info,  R.drawable.pogradeci,R.drawable.pogradeci_sm,   MapsActivity.Pogradeci,  kala[i], videoId);
+                a=new Info( 16,  info,  "pogradeci", "pogradeci_sm",   MapsActivity.Pogradeci,  kala[i], videoId);
             }else if ( i==17) {
                 String infopeqini="Themelet e kalasë së Peqinit mendohet se i përkasin periudhës romake," +
                         " në kohën e ndërtimit të rrugës \"Egnatia\" dhe më pas është rikonstruktuar" +
@@ -381,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
                         "në muret e kalasë janë gjetur tuba prej balte, që sipas arkeologëve do të thotë " +
                         "se në kohë lufte furnizimi me ujë është bërë nga jashtë. ";
                 videoId="TLNShDIyoLE";
-                a=new Info( 17,  infopeqini,  R.drawable.peqini,R.drawable.peqini_sm,   MapsActivity.Peqini,  kala[i], videoId);
+                a=new Info( 17,  infopeqini,  "peqini", "peqini_sm",   MapsActivity.Peqini,  kala[i], videoId);
             }else if ( i==18) {
                 String infopetralba="Kalaja e Gurit të Bardhë apo Petralbës, siç njihet ndryshe dikur ishte " +
                         "një ndër selitë e Kastriotëve. Sipas historianëve zona përbënte një ndër pikat" +
@@ -393,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
                         "shohësh vendin e saj, ndoshta për këtë Barleti e cilësonte një kala të ngritur majë një mali" +
                         " e që s’i trembej asnjë fuqie armike, përveç urisë.  ";
                 videoId = "";
-                a=new Info( 18,  infopetralba,  R.drawable.petralba,R.drawable.petralba_sm,   MapsActivity.Petralba,  kala[i], videoId);
+                a=new Info( 18,  infopetralba,  "petralba", "petralba_sm",   MapsActivity.Petralba,  kala[i], videoId);
             }else if ( i==19) {
                 String infopetrela="KKalaja e Petrelës nga zbulimet e bëra, është kala mesjetare e ndërtuar në kohën " +
                         "e sundimit të Perandorit Bizantin Justianit të I, në shekullin e VI pas Krishtit." +
@@ -406,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
                         "e cila për kohën kishte rëndësi të veçantë. \n Në fillim të shek. XIV-të ishte nën " +
                         "sundimin e Topiajve, në atë kohë zotërues midis Matit e Shkumbinit, në një " +
                         "faqe të murit ruhet dhe emblema e parë e Topiajve. ";
-                a=new Info( 19,  infopetrela,  R.drawable.petrela,R.drawable.petrela_sm,   MapsActivity.Petrela,  kala[i], videoId);
+                a=new Info( 19,  infopetrela,  "petrela", "petrela_sm",   MapsActivity.Petrela,  kala[i], videoId);
             }else if ( i==20) {
                 String infoportopalermo="Kalaja e vogël është e vendosur në një pozicion mjaft të bukur" +
                         " në një gadishull në gjirin e vogël tektonik të Porto Palermos (në antikitet" +
@@ -432,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
                         " Kishën (Shën Nikolla) nuk e ka bere ai ka qene atje, dhe gjelbërimi " +
                         "nuk është gjithëvjeçar ne dimër thahet.";
                 videoId="qnP7hZLBZvI";
-                a=new Info( 20,  infoportopalermo,  R.drawable.portopalermo,R.drawable.portopalermo_sm,   MapsActivity.PortoPalermo,  kala[i], videoId);
+                a=new Info( 20,  infoportopalermo,  "portopalermo", "portopalermo_sm",   MapsActivity.PortoPalermo,  kala[i], videoId);
             }else if ( i==21) {
                 String infopreza="Kalaja e Prezës është ndërtuar mbi një shkëmb i cili zgjatet duke u ulur në drejtim " +
                         "të veri-jugut. Ana lindore e kalasë është e mbrojtur nga vetë terreni, kurse ana perëndimore" +
@@ -450,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
                         "brenda mureve rrethuese, kurse faza e katër lidhet me ndërtimin e një kulle sahati" +
                         " që nuk ka të bëjë me sistemin fortifikues, por i përket një periudhe të mëvonshme ";
                 videoId = "";
-                a=new Info( 21,  infopreza,  R.drawable.preza,R.drawable.preza_sm,   MapsActivity.Preza,  kala[i], videoId);
+                a=new Info( 21,  infopreza,  "preza", "preza_sm",   MapsActivity.Preza,  kala[i], videoId);
             }else if ( i==22) {
                 String inforodoni="Kalaja e Rodonit ndodhet në kepin e Rodonit. Princi Karl Topia dëshironte " +
                         "ta kthente këtë vend në një kantier detar, ndërsa Skënderbeu, duke synuar që të " +
@@ -463,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
                         "shikojnë muret e jashtme të anës së djathtë, të cilat përfundojnë me një kullë të " +
                         "rrumbullakët. Pranë kalasë ndodhen edhe rrënojat e Kishës së Shën Pjetrit, të cilat " +
                         "konsiderohen nga banorët si vend i shenjtë. ";
-                a=new Info( 22,  inforodoni,  R.drawable.rodoni,R.drawable.rodoni_sm,   MapsActivity.Rodoni,  kala[i], videoId);
+                a=new Info( 22,  inforodoni,  "rodoni", "rodoni_sm",   MapsActivity.Rodoni,  kala[i], videoId);
             }else if ( i==23) {
                 String inforozafa="Kështjella e Rozafatit është e ngritur mbi një kodër shkëmbore në hyrje" +
                         " të qytetit të Shkodrës. Mbi faqet e pjerrëta të kodrës ngrihen muret rrethuese " +
@@ -475,7 +514,7 @@ public class MainActivity extends AppCompatActivity {
                         "Brenda mureve të saj ruhen një sërë mjedisesh si garnizone, depo, " +
                         "një ndërtesë administrative etj ";
                 videoId="DtY7wtYlZ5Q";
-                a=new Info( 23,  inforozafa,  R.drawable.shkodra,R.drawable.shkodra_sm,   MapsActivity.Rozafa,  kala[i], videoId);
+                a=new Info( 23,  inforozafa,  "shkodra", "shkodra_sm",   MapsActivity.Rozafa,  kala[i], videoId);
             }else if ( i==24) {
                 String infosebaste="Kalaja e Laçit i përket si ndërtim antikitetit të vonë që mbijetoi" +
                         " edhe në mesjetë.\n" +
@@ -489,7 +528,7 @@ public class MainActivity extends AppCompatActivity {
                         "kështjellë i përket qyetit LATIUM, i cili identifikohet si vendndodhje me Laçin" +
                         " e sotëm." ;
                 videoId = "";
-                          a=new Info( 24,  infosebaste,  R.drawable.sebaste,R.drawable.sebaste_sm,   MapsActivity.Sebaste,  kala[i], videoId);
+                          a=new Info( 24,  infosebaste,  "sebaste", "sebaste_sm",   MapsActivity.Sebaste,  kala[i], videoId);
             }else if ( i==25) {
                 String infotepelena="Kalaja e Ali Pashë Tepelenës ndodhet në veri të qytetit në një pozicion " +
                         "gjeografik që ndihmonte në mbrojtejen e kalasë. Nga burimet historike, kalaja është " +
@@ -498,7 +537,7 @@ public class MainActivity extends AppCompatActivity {
                         " tre hyrje dhe 3 kulla. Deri mė 1820 ka qėnė rezidenca e dytė e Ali Pashë Tepelenës." ;
 
                        videoId="pbER0N0HkMk";
-                a=new Info( 25,  infotepelena,  R.drawable.tepelena,R.drawable.tepelena_sm,   MapsActivity.Tepelena,  kala[i], videoId);
+                a=new Info( 25,  infotepelena,  "tepelena", "tepelena_sm",   MapsActivity.Tepelena,  kala[i], videoId);
             }else if ( i==26) {
                 String infotirana="Kalaja e Tiranës ishte një stacion rrugor i vijës Egnatia i tipit Mansio-Mutatio." +
                         " Ajo përbënte qendrën e një vendbanimi, të emërtuar me një variacion emrash që në s" +
@@ -512,7 +551,7 @@ public class MainActivity extends AppCompatActivity {
                         "Tiranës kanë banuar pjesëtarë të familjeve sunduese të qytetit dhe për këtë arsye ato " +
                         "konsiderohen edhe si godina të administratës së parë lokale." ;
                 videoId = "";
-                a=new Info( 26,  infotirana,  R.drawable.tirana,R.drawable.tirana_sm,   MapsActivity.Tirana,  kala[i], videoId);
+                a=new Info( 26,  infotirana,  "tirana", "tirana_sm",   MapsActivity.Tirana,  kala[i], videoId);
             } else if ( i==27) {
                 String infovaroshi="Kalaja e Varoshit është monument kulturor i ndodhur në Ndroq , Tiranë.Ky monument" +
                         " kulturor i takon kategorisë arkitekturor dhe është i mbrojtur me ligj.Në dokumentet turke " +
@@ -523,13 +562,13 @@ public class MainActivity extends AppCompatActivity {
                         " mesjetar kur u fuqizua principata e Kastriotëve. Skënderbeu e mori në dhjetor 1443, " +
                         "e përfshiu në sistemin mbrojtës të vendit dhe kështjella luajti rol në luftërat e tij." ;
                 videoId = "";
-                a=new Info( 27,  infovaroshi,  R.drawable.varoshi, R.drawable.varoshi_sm,  MapsActivity.Varoshi,  kala[i], videoId);
+                a=new Info( 27,  infovaroshi,  "varoshi", "varoshi_sm",  MapsActivity.Varoshi,  kala[i], videoId);
             }else if (i==28) {
                 String infozgerdheshi="Kalaja e Zgërdheshit ne fshatin Zgerdhesh ne Lindje te Ures se Zeze, " +
                         "ne JugPerendim te fshatit Zgerdhesh, ne kuoten 252, muret dhe gjithe kodra e kufizuar " +
                         "nga veriu e jugu me 2 perrenjte, nga lindja me qafen dhe nga perendimi ne arat e lagjes" +
                         " Kakariq." ;
-                a=new Info( 28,  infozgerdheshi, R.drawable.zgerdheshi,R.drawable.zgerdheshi_sm,   MapsActivity.Zgerdheshi,  kala[i], videoId);
+                a=new Info( 28,  infozgerdheshi, "zgerdheshi", "zgerdheshi_sm",   MapsActivity.Zgerdheshi,  kala[i], videoId);
             }
             castles.add(a);
 
@@ -545,9 +584,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        myDbHelper = new DatabaseHelper(this);
+        boolean isInserted = false;
+        for (int i = 0; i<castles.size();i++) {
+            Info castle = castles.get(i);
+            isInserted = myDbHelper.insertData(castle.getInfo(), castle.getPhotoPath(), castle.getPhotoPathSmall(), castle.getLatLng().latitude,
+                    castle.getLatLng().longitude, castle.getName(), castle.getVideoId(), castle.getInfo(), castle.getName() );
+
+        }
 
 
-
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                1);
 
         ListAdapter adapter = new CustomAdapter(this, castles);
 
@@ -573,6 +622,41 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                    try {
+                        String path = myDbHelper.writeToSD();
+                        System.out.println("1111");
+                        System.out.println(path);
+                    } catch (IOException e) {
+                        System.out.println(e.getStackTrace().toString());
+                        Toast.makeText(MainActivity.this, e.getStackTrace().toString() , Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
 }
 
 

@@ -28,18 +28,18 @@ import java.io.Serializable;
 public class Info implements Serializable {
     private int id;
     private String info;
-    private int photoPath;
+    private String photoPath;
     private transient LatLng latLng;
     private String videoId;
 
     private String name;
-    private int photoPathSmall;
+    private String photoPathSmall;
 
 
     public Info(){}
 
 
-    public Info (int id, String info, int photoPath,int photoPathSmall, LatLng latLng, String name, String videoId){
+    public Info (int id, String info, String photoPath, String photoPathSmall, LatLng latLng, String name, String videoId){
 
         this.info=info;
         this.photoPath=photoPath;
@@ -66,11 +66,11 @@ public class Info implements Serializable {
         return id;
     }
 
-    public int getPhotoPathSmall() {
+    public String getPhotoPathSmall() {
         return photoPathSmall;
     }
 
-    public void setPhotoPathSmall(int photoPathSmall) {
+    public void setPhotoPathSmall(String photoPathSmall) {
         this.photoPathSmall = photoPathSmall;
     }
 
@@ -94,11 +94,11 @@ public class Info implements Serializable {
         this.info = info;
     }
 
-    public int getPhotoPath() {
+    public String getPhotoPath() {
         return photoPath;
     }
 
-    public void setPhotoPath(int photoPath) {
+    public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
 
