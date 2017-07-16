@@ -38,7 +38,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile files('libs/YouTubeAndroidPlayerApi.jar')
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android.gms:play-services-maps:11.0.0'
@@ -46,5 +45,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:11.0.0'
     compile 'com.google.firebase:firebase-core:11.0.0'
     testCompile 'junit:junit:4.12'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
 }
 apply plugin: 'com.google.gms.google-services'

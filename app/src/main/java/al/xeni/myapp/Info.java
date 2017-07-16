@@ -31,7 +31,8 @@ public class Info implements Serializable {
     private String photoPath;
     private transient LatLng latLng;
     private String videoId;
-
+    private String infoEn;
+    private String nameEn;
     private String name;
     private String photoPathSmall;
 
@@ -108,5 +109,21 @@ public class Info implements Serializable {
 
     public void setLatLng(LatLng latLng) {
         this.latLng = latLng;
+    }
+
+    public String getInfoEn() {
+        return infoEn;
+    }
+
+    public void setInfoEn(String infoEn) {
+        this.infoEn = infoEn;
+    }
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
     }
 }

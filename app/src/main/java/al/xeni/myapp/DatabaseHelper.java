@@ -2,17 +2,32 @@ package al.xeni.myapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Environment;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import org.apache.commons.io.IOUtils;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.nio.channels.FileChannel;
 import java.security.AccessControlContext;
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 /**
  * Created by Edi on 02/07/2017.
@@ -25,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private SQLiteDatabase db;
+    public static List<Info> castlesDb = new ArrayList<>();
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DbContract.DbEntry.TABLE_NAME + " (" +
                     DbContract.DbEntry.COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -58,16 +74,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-   /* public static final String COL_2 = "INFO";
-    public static final String COL_3 = "IMG";
-    public static final String COL_4 = "IMG_SM";
-    public static final String COL_5 = "LAT";
-    public static final String COL_6 = "LNG";
-    public static final String COL_7 = "TITLE";
-    public static final String COL_8 = "VIDEO";
-    public static final String COL_9 = "INFO_EN";
-    public static final String COL_10 = "TITLE_EN";*/
-
 
     public boolean insertData(String info, String img, String img_sm, double lat, double lng,
                               String title, String video, String info_en, String title_en){
@@ -88,6 +94,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+
+    public void writeCustomSQL() throws IOException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        InputStream is = context.getAssets().open("albanian_castles.sql");
+
+        db.execSQL(SQL_DELETE_ENTRIES);
+
+        String sql= convertStreamToString(is);
+        System.out.println("kodër");
+        for (String query : sql.split(";")) {
+            System.out.println(query);
+            db.execSQL(query);
+        }
+        System.out.println("done exec sql");
+    }
+
+    public static String convertStreamToString(InputStream is)
+            throws IOException {
+        String queries = "";
+        try {
+            queries = IOUtils.toString(is, "ISO-8859-1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return queries;
+    }
+
+    public List<Info> readData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = new String[]{
+                DbContract.DbEntry.COL_1,
+                DbContract.DbEntry.COL_2,
+                DbContract.DbEntry.COL_3,
+                DbContract.DbEntry.COL_4 ,
+                DbContract.DbEntry.COL_5 ,
+                DbContract.DbEntry.COL_6 ,
+                DbContract.DbEntry.COL_7 ,
+                DbContract.DbEntry.COL_8 ,
+                DbContract.DbEntry.COL_9 ,
+                DbContract.DbEntry.COL_10 };
+
+        Cursor c = db.query(DbContract.DbEntry.TABLE_NAME, columns, null, null, null, null, null);
+        int iId = c.getColumnIndex(DbContract.DbEntry.COL_1);
+        int iINFO = c.getColumnIndex(DbContract.DbEntry.COL_2);
+        int iIMG = c.getColumnIndex(DbContract.DbEntry.COL_3);
+        int iIMG_SM = c.getColumnIndex(DbContract.DbEntry.COL_4);
+        int iLAT = c.getColumnIndex(DbContract.DbEntry.COL_5);
+        int iLNG = c.getColumnIndex(DbContract.DbEntry.COL_6);
+        int iTITLE = c.getColumnIndex(DbContract.DbEntry.COL_7);
+        int iVIDEO = c.getColumnIndex(DbContract.DbEntry.COL_8);
+        int iINFO_EN = c.getColumnIndex(DbContract.DbEntry.COL_9);
+        int iTITLE_EN = c.getColumnIndex(DbContract.DbEntry.COL_10);
+
+        for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
+
+            double lat = c.getDouble(iLAT);
+            double lng = c.getDouble(iLNG);
+            LatLng ll = new LatLng(lat, lng);
+            Info current = new Info(c.getInt(iId), c.getString(iINFO), c.getString(iIMG),
+                    c.getString(iIMG_SM), ll, c.getString(iTITLE), c.getString(iVIDEO));
+            current.setInfoEn(c.getString(iINFO_EN));
+            current.setNameEn(c.getString(iTITLE_EN));
+            castlesDb.add(current);
+        }
+        return castlesDb;
+    }
+
+
 
     public String writeToSD() throws IOException {
         File sd = Environment.getExternalStorageDirectory();
